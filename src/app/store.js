@@ -1,16 +1,15 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from '../pages/User/userSlice';
-import serieSlice from '../pages/serieSlice';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
-
 import thunk from 'redux-thunk';
 
+//import racketSlice from '../pages/racketSlice';
 const reducers = combineReducers({
     user: userSlice,
-    serie: serieSlice
+    test: testSlice
 })
 
 const persistConfig = {
@@ -24,3 +23,16 @@ export default configureStore({
     reducer: persistedReducer,
     middleware: [thunk]
 });
+
+
+
+
+
+
+
+
+
+
+
+
+ 

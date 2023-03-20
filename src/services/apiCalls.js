@@ -7,7 +7,7 @@ export const postLogin = async (credenciales) => {
 };
 
 export const postRegistered = async (body) => {
-    return await axios.post(`${root}users/newuser`, body)
+    return await axios.post(`${root}users/newUser`, body)
 }
 
 export const getSearch = async (criterioBusqueda) => {

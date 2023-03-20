@@ -1,4 +1,4 @@
-.adminDesign {
+.homeDesign {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,4 +13,8 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.loadingGif {
+    height: 15em;
 }

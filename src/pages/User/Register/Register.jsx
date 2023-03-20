@@ -3,7 +3,7 @@ import { InputText } from '../../../common/InputText/InputText';
 import { postRegistered } from '../../../services/apiCalls';
 import { errorCheck } from '../../../services/utiles';
 import { useNavigate } from 'react-router-dom';
-import './Register.css';
+import './Register.scss';
 
 export const Register = () => {
     const [usuario, setUsuario] = useState({
@@ -54,30 +54,30 @@ export const Register = () => {
                 type={'text'}
                 name={'name'}
                 className={usuarioError.nameError === '' ? 'inputDesign' : 'inputDesign inputDesignError'}
-                placeholder={'nombre'} functionHandler={registerInputHandler}
+                placeholder={'name'} functionHandler={registerInputHandler}
                 errorHandler={registerErrorHandler}
             />
-            <div className='errorText'>{usuarioError.nameError}</div>
+            <div className='Error name'>{usuarioError.nameError}</div>
             <p>Contraseña</p>
             <InputText
                 type={'password'}
                 name={'password'}
                 className={usuarioError.passwordError === '' ? 'inputDesign' : 'inputDesign inputDesignError'}
-                placeholder={'pass'}
+                placeholder={'password'}
                 functionHandler={registerInputHandler}
                 errorHandler={registerErrorHandler}
             />
-            <div className='errorText'>{usuarioError.passwordError}</div>
+            <div className='Error password'>{usuarioError.passwordError}</div>
             <p>Email</p>
             <InputText
                 type={'email'}
                 name={'email'}
                 className={usuarioError.emailError === '' ? 'inputDesign' : 'inputDesign inputDesignError'}
-                placeholder={'correo'}
+                placeholder={'email'}
                 functionHandler={registerInputHandler}
                 errorHandler={registerErrorHandler}
             />
-            <div className='errorText'>{usuarioError.emailError}</div>
+            <div className='Error email'>{usuarioError.emailError}</div>
             <div className='loginButtonDesign' onClick={() => signMe()}>Sign in</div>
         </div>
     );

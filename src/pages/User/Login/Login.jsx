@@ -5,7 +5,7 @@ import { postLogin } from '../../../services/apiCalls';
 import { Decoder, errorCheck } from '../../../services/utiles';
 import { useSelector, useDispatch } from "react-redux";
 import { userData, login } from '../userSlice';
-import './Login.css';
+import './Login.scss';
 
 export const Login = () => {
     const dispatch = useDispatch();
@@ -37,9 +37,10 @@ export const Login = () => {
                     let decodificado = Decoder(resultado.data.token);
 
                     let userPass = {
-                        token: resultado,
-                        user: decodificado.id,
+                        token: resultado,   //.data.token, 
+                        user: decodificado._id,
                         name: resultado.data.userFound[0].name,
+                        email: resultado.data.userFound[0].email,
                         rol: resultado.data.userFound[0].rol,
                     }
                     dispatch(login({ userPass: userPass }));

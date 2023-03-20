@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
-import './Admin.css';
+import './Admin.scss';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { userData } from '../userSlice';
 import { allUsersAdmin } from '../../../services/apiCalls';
-import { CardRental } from '../../../common/CardRental/CardRental';
+
 
 export const Admin = () => {
     const navigate = useNavigate();
     const userRDX = useSelector(userData);
-    const [allRentals, setAllRentals] = useState([]);
+    const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
         if (userRDX.userPass.rol !== 'admin') {
@@ -19,26 +19,26 @@ export const Admin = () => {
     }, [])
 
     useEffect(() => {
-        if (allRentals.length === 0) {
+        if (allUsers.length === 0) {
             allUsersAdmin(userRDX.userPass.token.data.token)
                 .then(resultado => {
-                    setAllRentals(resultado.data);
+                    setAllUsers(resultado.data);
                 })
                 .catch(error => console.log(error));
         };
-    }, [allRentals]);
+    }, [allUsers]);
 
     return (
         <div className='adminDesign'>
             <div>Todos los usuarios</div>
             <div></div>
             <div className='rosterDesign'>
-                {allRentals.length > 0 &&
-                    allRentals.map(
-                        rental => {
+                {allUsers.length > 0 &&
+                    allUsers.map(
+                        user => {
                             return (
-                                <div key={rental._id}>
-                                    <CardRental rental={rental} />
+                                <div key={user._id}>
+                                    {/* <CardRental rental={rental} /> */}
                                 </div>
                             )
                         }

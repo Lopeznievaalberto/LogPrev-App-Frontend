@@ -1,70 +1,72 @@
 import React, { useState, useEffect } from 'react';
-
-//import { getSeries } from '../../services/apiCalls';
 import './Home.scss';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
+import { TestCard } from '../../common/TestCard/TestCard';
+import { testData, select } from '../testSlice';
+import { getTests } from '../../services/apiCalls';
 
 
-// export const Home = () => {
-//     const dispatch = useDispatch();
-//     const navigate = useNavigate();
-//     const [series, setSeries] = useState([]);
+export const Home = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [tests, setTests] = useState([]);
+    const datosReduxTests = useSelector(testData)
 
-//     useEffect(() => {
-//         if (series.length === 0) {
-//             setTimeout(() => {
-//                 getSeries()
-//                     .then(
-//                         resultado => {
-//                             setSeries(resultado.data);
-//                         }
-//                     )
-//                     .catch(error => console.log(error));
-//             }, 1000);
-//         };
-//     }, [series]);
+    useEffect(() => {
+        if (tests.length === 0) {
+            setTimeout(() => {
+                getTests()
+                    .then(
+                        resultado => {
+                            setTests(resultado.data);
+                        }
+                    )
+                    .catch(error => console.log(error));
+            }, 1000);
+        };
+    }, [tests]);
 
-//     const Choosen = (serie) => {
-//         dispatch(select({ choosen: serie }))
-//         setTimeout(() => {
-//             navigate("/detail");
-//         }, 250);
-//     }
+    const Choosen = (test) => {
+        dispatch(select({ choosen: test }))
+        setTimeout(() => {
+            navigate("/TestDetail");
+        }, 250);
+    }
 
-//     return (
-//         <div className='homeDesign'>
-//             {datosReduxSeries.series.length > 0 ? (
-//                 <div className='rosterDesign'>
-//                     {datosReduxSeries.series.map(
-//                         serie => {
-//                             return (
-//                                 <div onClick={() => Choosen(serie)} key={serie._id}>
-//                                     <CardSerie serie={serie} />
-//                                 </div>
-//                             )
-//                         }
-//                     )}
-//                 </div>
-//             ) :
-//                 (
-//                     series.length > 0 ? (
-//                         <div className='rosterDesign'>
-//                             {series.map(
-//                                 serie => {
-//                                     return (
-//                                         <div onClick={() => Choosen(serie)} key={serie._id}>
-//                                             <CardSerie serie={serie} />
-//                                         </div>
-//                                     )
-//                                 }
-//                             )}
-//                         </div>
-//                     ) : (
-//                         <div><img className="loadingGif" src={Loading} alt="Cargando" /></div>
-//                     )
-//                 )
-//             }
-//         </div>
-//     );
-// };
+    return (
+        <div className='homeDesign'>
+            {datosReduxTests.tests.length > 0 ? (
+                <div className='rosterDesign'>
+                    {datosReduxTests.tests.map(
+                        test => {
+                            return (
+                                <div onClick={() => Choosen(test)} key={test._id}>
+                                    <TestCard test={test} />
+                                </div>
+                            )
+                        }
+                    )}
+                </div>
+            ) :
+                (
+                    tests.length > 0 ? (
+                        <div className='rosterDesign'>
+                            {tests.map(
+                                test => {
+                                    return (
+                                        <div onClick={() => Choosen(test)} key={test._id}>
+                                            <TestCard test={test} />
+                                        </div>
+                                    )
+                                }
+                            )}
+                        </div>
+                    ) : (
+                        <div></div>
+                    )
+                )
+            }
+        </div>
+    );
+ };

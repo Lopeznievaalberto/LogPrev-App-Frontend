@@ -5,8 +5,9 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
+import testSlice from '../pages/testSlice';
 
-//import racketSlice from '../pages/racketSlice';
+
 const reducers = combineReducers({
     user: userSlice,
     test: testSlice
